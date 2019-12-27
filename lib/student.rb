@@ -16,7 +16,7 @@ class Student
         album TEXT
         )
         SQL
-      DB = [:conn].execute(sql)
+      DB[:conn].execute(sql)
   end
   
   def self.drop_table
@@ -24,9 +24,14 @@ class Student
       DROP TABLE songs
       )
       SQL
-      
-      DB
-  end 
+    DB[:conn].execute(sql)
+  end
+  
+  def save
+    sql = SQL (
+      INSERT 
+      )
+    
     
     
   end 
