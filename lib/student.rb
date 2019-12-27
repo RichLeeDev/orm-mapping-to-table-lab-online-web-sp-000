@@ -13,7 +13,7 @@ class Student
       CREATE TABLE IF NOT EXISTS students (
         id INTEGER PRIMARY KEY,
         name TEXT,
-        album TEXT
+        grade TEXT
         )
       SQL
         
@@ -29,16 +29,16 @@ class Student
   
   def save
     sql = <<-SQL
-      INSERT INTO students (name, album)
+      INSERT INTO students (name, grade)
       VALUES(?, ?)
       SQL
       
-      DB[:conn].execute(sql, self.name, self.album)
+      DB[:conn].execute(sql, self.name, self.grade)
     
       @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]  
   end
   
-  def self.create(name, grade)
+  def self.create(name:, grade:)
     student = Student.new(name, grade)
     student.save
     student
